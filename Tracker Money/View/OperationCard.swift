@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OperationCard: View {
     @EnvironmentObject var operationViewMOdel: OperationViewModel
+    var isFilter: Bool = false
     var body: some View {
         GeometryReader{ proxy in
             RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -17,7 +18,7 @@ struct OperationCard: View {
                 )
             VStack(spacing: 15){
                 VStack(spacing: 15){
-                    Text(operationViewMOdel.currentMonthString())
+                    Text(isFilter ? operationViewMOdel.convertDateToString() : operationViewMOdel.currentMonthString())
                         .font(.callout)
                         .fontWeight(.semibold)
                     

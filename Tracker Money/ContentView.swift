@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @AppStorage("currentPage") var currentPage = 1
+    
+    
     var body: some View {
-        NavigationView{
-            Home()
-                .navigationBarHidden(true)
+        
+        if currentPage > totalPage{
+            NavigationView{
+                Home()
+                    .navigationBarHidden(true)
+                    }
+            }
+        else {
+            WalkthroughtScreen()
         }
     }
 }

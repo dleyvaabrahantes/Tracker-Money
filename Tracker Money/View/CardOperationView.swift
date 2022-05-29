@@ -12,24 +12,31 @@ struct CardOperationView: View {
     @EnvironmentObject var viewModel : OperationViewModel
     var body: some View {
         HStack(spacing: 12){
-            if let first = operation.remark.first{
+            if let first = operation.name.first{
                 Text(String(first))
                     .font(.title.bold())
                     .foregroundColor(.white)
                     .frame(width: 50, height: 50)
                     .background{
                         Circle()
-                            .fill(operation.color)
+                            .fill(Color("\(operation.color)"))
                         
                     }
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 5, y: 5)
             }
-            
-            Text(operation.remark)
+            VStack(spacing: 10){
+            Text(operation.name)
                 .fontWeight(.semibold)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+                
+                Text(operation.category.rawValue)
+                    .font(.caption)
+                    .fontWeight(.light)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+            }
             VStack(alignment: .trailing, spacing: 7) {
                 let price = viewModel.convertNumberToString(value: operation.type == .input ? operation.total : -operation.total)
                 Text(price)
