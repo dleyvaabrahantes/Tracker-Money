@@ -64,63 +64,32 @@ struct WalkPage: View {
                     .frame(height: 400)
                     .aspectRatio(contentMode: .fit)
                     .padding()
-                Text("Especifica su masa corporal")
+                Text("Track your money")
                     .font(.title)
                     .fontWeight(.semibold)
                     .padding(.top, 20)
             }
             if currentPage == 2 {
-                Image("scale")
+                Image(image)
                     .resizable()
-                    .frame(height: 400)
+                    .frame(height: 380)
                     .aspectRatio(contentMode: .fit)
-                VStack {
-                    Text("Especifica su masa corporal")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .padding(.top, 20)
-                    Slider(value: $currentWeight, in: 20...500)
-                    Text("\(currentWeight, specifier: "%.f") Lb/ \(currentWeight / 2.2 ,specifier: "%.1f")Kg")
-                        .padding(.top,20)
-                }
-                
+                    .padding()
+                Text("Check total money at all times")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .padding(.top, 20)
             }
             if currentPage == 3 {
-                VStack(spacing: 20){
-                    VStack(spacing: 0) {
-                        Text("Wake Up")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        HStack(alignment: .center){
-                            Image("wakeup")
-                                .resizable()
-                                .frame(width: 160 , height: 100)
-                                .padding(.top,50)
-                                .padding(.leading,20)
-                            
-                           
-                            
-                        }
-                        
-                    }
-                    
-                    VStack(spacing: 0) {
-                        Text("Sleep fall")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        HStack(alignment: .center){
-                            Image("sleep")
-                                .resizable()
-                                .frame(width: 160 , height: 100)
-                                .padding(.top,50)
-                                .padding(.leading,20)
-                            
-                            
-                        }
-                    }
-                }
-                Spacer()
-                
+                Image(image)
+                    .resizable()
+                    .frame(height: 280)
+                    .aspectRatio(contentMode: .fit)
+                    .padding()
+                Text("Organize your type of expenses")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .padding(.top, 20)
             }
             //            else {
             //                Text(title)

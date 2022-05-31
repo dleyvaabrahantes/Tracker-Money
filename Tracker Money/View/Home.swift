@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Home: View {
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -25,7 +26,7 @@ struct Home: View {
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.gray)
-                        Text("David")
+                        Text("Tracker Money")
                             .font(.title2.bold())
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -93,11 +94,11 @@ struct Home: View {
             ForEach(operationViewMOdel.operations){value in
                 ZStack{
                     HStack{
-                        Color.yellow
-                            //.frame(maxWidth: .infinity)
-                            .frame(width: 90)
-                            .opacity(value.offset > 0 ? 1 : 0)
-                            .cornerRadius(20)
+//                        Color.yellow
+//                            //.frame(maxWidth: .infinity)
+//                            .frame(width: 90)
+//                            .opacity(value.offset > 0 ? 1 : 0)
+//                            .cornerRadius(20)
                         Spacer()
                         Color.red
                             .frame(width: 90)
@@ -107,18 +108,19 @@ struct Home: View {
                     }
                     .animation(.default)
                     HStack{
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "pin.fill")
-                                .font(.title)
-                                .foregroundColor(.white)
-                        }
-                        .frame(width: 90)
+//                        Button {
+//                            
+//                        } label: {
+//                            Image(systemName: "pin.fill")
+//                                .font(.title)
+//                                .foregroundColor(.white)
+//                        }
+//                        .frame(width: 90)
                         
                         Spacer()
                         
                         Button {
+                            PersistenceController.shared.deletePredicate(id: operationViewMOdel.operations[getIndex(id: value.id)].id)
                             operationViewMOdel.operations.remove(at: getIndex(id: value.id))
                             
                         } label: {
@@ -191,7 +193,7 @@ struct Home: View {
     
     func PrintList(){
         for item in items {
-            operationViewMOdel.operations.append(Operation(name: item.remark ?? "", total: item.total, date: item.date ?? Date(), type: typeOperation(rawValue: item.type ?? "All") ?? .all, color: item.color ?? "Black", category: category(rawValue: item.category ?? "Other") ?? .other))
+            operationViewMOdel.operations.append(Operation(id: item.id ?? "", name: item.remark ?? "", total: item.total, date: item.date ?? Date(), type: typeOperation(rawValue: item.type ?? "All") ?? .all, color: item.color ?? "Black", category: category(rawValue: item.category ?? "Other") ?? .other))
         }
     }
     

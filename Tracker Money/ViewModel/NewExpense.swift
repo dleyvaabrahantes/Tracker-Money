@@ -82,7 +82,7 @@ struct NewExpense: View {
                     Button {
                         showCategory.toggle()
                     } label: {
-                         Text("Seleccionar categoria")
+                        Text(viewModel.categoryStr == .defaul ?  "Seleccionar categoria" : viewModel.categoryStr.rawValue)
                             .foregroundColor(.black)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -160,6 +160,7 @@ struct NewExpense: View {
         }
         .sheet(isPresented: $showCategory) {
             CategoryView()
+                .environmentObject(viewModel)
         }
     }
     

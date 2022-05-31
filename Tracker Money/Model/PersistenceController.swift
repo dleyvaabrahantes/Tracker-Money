@@ -38,5 +38,20 @@ struct PersistenceController {
         context.delete(object)
         save(completion: completion)
     }
+    
+    func deletePredicate(id: String){
+        let context = container.viewContext
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ExpensesMO")
+        
+        fetchrequest.predicate = NSPredicate(format: "id == %@", id)
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchrequest)
+        
+        do{
+            try context.execute(deleteRequest)
+        } catch let error as NSError{
+            print("Could not delete \(error), \(error.userInfo)")
+        }
+    }
 }
 

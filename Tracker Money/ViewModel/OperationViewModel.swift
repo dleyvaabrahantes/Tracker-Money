@@ -12,6 +12,7 @@ import CoreData
 
 class OperationViewModel: ObservableObject {
     @Published var operations: [Operation] = []
+    @Published var categories: [categoryEntity] = sampleCategory
     @Published var endDate: Date = Date()
     @Published var startDate: Date = Date()
     @Published var currentMontStart: Date = Date()
@@ -25,7 +26,7 @@ class OperationViewModel: ObservableObject {
     @Published var type: typeOperation = .all
     @Published var date:Date = Date()
     @Published var name: String = ""
-    @Published var categoryStr: category = .other
+    @Published var categoryStr: category = .defaul
     
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.date, order: .reverse)
@@ -72,14 +73,16 @@ class OperationViewModel: ObservableObject {
         type = .all
         name = ""
         total = ""
+        categoryStr = .defaul
     }
     
     func saveDate(env: EnvironmentValues, context: NSManagedObjectContext){
         print("save")
         print(date)
+        let id = UUID().uuidString
         let amountDouble = (total as NSString).doubleValue
        let color = colors.randomElement() ?? "Black"
-        let object = Operation(name: name, total: amountDouble, date: date, type: type, color: color , category: categoryStr)
+        let object = Operation(id: id, name: name, total: amountDouble, date: date, type: type, color: color , category: categoryStr)
         withAnimation {
             operations.append(object)
         }
@@ -88,7 +91,7 @@ class OperationViewModel: ObservableObject {
         })
         
         let item = ExpensesMO(context: context)
-        item.id = UUID()
+        item.id = id
         item.remark = name
         item.total = amountDouble
         item.date = date

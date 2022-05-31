@@ -21,12 +21,12 @@ struct WalkthroughtScreen : View {
             
             if currentPage == 2 {
             //    TimeSleep()
-                WalkPage(image: "waterbody", title: "Peso Corporal", detail: "Importancia sadaadadasd", color: Color("Black"))
+                WalkPage(image: "check", title: "Importancia", detail: "Importancia sadaadadasd", color: Color("Yellow"))
                     .transition(.scale)
             }
             
             if currentPage == 3 {
-                WalkPage(image: "waterbody", title: "levantarse", detail: "Importancia sadaadadasd", color: Color("Yellow"))
+                WalkPage(image: "flat", title: "Importancia", detail: "Importancia sadaadadasd", color: Color("White"))
                     .transition(.scale)
             }
         }
