@@ -16,7 +16,7 @@ struct Home: View {
         SortDescriptor(\.date, order: .reverse)
         
     ]) var items: FetchedResults<ExpensesMO>
-    
+    @State var show = false
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 12){
@@ -69,6 +69,10 @@ struct Home: View {
         .overlay(alignment: .bottomTrailing){
             AddButton()
         }
+//        .overlay(alignment: .bottomLeading, content: {
+//            ExpandableButton(show: $show)
+//                .padding()
+//        })
         .onAppear {
             if operationViewMOdel.operations.isEmpty {
                 PrintList()
@@ -208,6 +212,65 @@ struct Home: View {
     }
     
         
+}
+
+struct ExpandableButton: View {
+    @Binding var show : Bool
+    var body: some View{
+        VStack{
+            
+            if self.show {
+                Button {
+                    show.toggle()
+                } label: {
+                    Image(systemName: "tv.fill")
+                        .font(.system(size: 25, weight: .medium))
+                        .foregroundColor(.white)
+                        .frame(width: 55, height: 55)
+                        .background{
+                            Circle()
+                                .fill(
+                                    .linearGradient(colors: [.blue, .green], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                )
+                        }
+                        .shadow(color: .black.opacity(0.1), radius: 5, x: 5, y: 5)
+                }
+                    
+                    Button {
+                        show.toggle()
+                    } label: {
+                        Image(systemName: "cart.fill")
+                            .font(.system(size: 25, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(width: 55, height: 55)
+                            .background{
+                                Circle()
+                                    .fill(
+                                        .linearGradient(colors: [.blue, .green], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                    )
+                            }
+                            .shadow(color: .black.opacity(0.1), radius: 5, x: 5, y: 5)
+            }
+            }
+            Button {
+                show.toggle()
+            } label: {
+                Image(systemName: "chevron.up")
+                    .font(.system(size: 25, weight: .medium))
+                    .foregroundColor(.white)
+                    .frame(width: 55, height: 55)
+                    .background{
+                        Circle()
+                            .fill(
+                                .linearGradient(colors: [.blue, .green], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
+                    }
+                    .shadow(color: .black.opacity(0.1), radius: 5, x: 5, y: 5)
+                    .rotationEffect(.init(degrees: self.show ? 180 : 0))
+            }
+            .animation(.spring())
+         }
+    }
 }
 
 struct Home_Previews: PreviewProvider {
