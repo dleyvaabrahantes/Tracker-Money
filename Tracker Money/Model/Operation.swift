@@ -54,8 +54,13 @@ var sampleCategory:[categoryEntity] = [
     categoryEntity(id: UUID(), name: "Food", image: "food", select: false),
     categoryEntity(id: UUID(), name: "Shoping", image: "shopping", select: false),
     categoryEntity(id: UUID(), name: "Utilities", image: "tools", select: false),
+    categoryEntity(id: UUID(), name: "Bussines", image: "bussines", select: false),
+    categoryEntity(id: UUID(), name: "Gift", image: "gift", select: false),
+    categoryEntity(id: UUID(), name: "Travel", image: "travel", select: false),
+    categoryEntity(id: UUID(), name: "Vacation", image: "vacation", select: false),
     categoryEntity(id: UUID(), name: "Entertaiment", image: "entertaiment", select: false),
     categoryEntity(id: UUID(), name: "Oil", image: "oil", select: false),
+    categoryEntity(id: UUID(), name: "Saving", image: "saving", select: false),
     categoryEntity(id: UUID(), name: "Other", image: "other", select: false)
     
 

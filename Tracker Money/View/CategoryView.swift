@@ -48,7 +48,7 @@ struct CategoryView: View {
             } label: {
                 Image(systemName: "xmark")
                     .font(.title2)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("Black"))
                     .opacity(0.7)
                 
             }
